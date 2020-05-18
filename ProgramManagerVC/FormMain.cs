@@ -53,6 +53,21 @@ namespace ProgramManagerVC
         private void FormMain_Load(object sender, EventArgs e)
         {
             InitializeMDI();
+            InitializeTitle();
+
+
+        }
+
+        private void InitializeTitle()
+        {
+            if (Properties.Settings.Default.UsernameInTitle == 1)
+            {
+                Text = $"Program Manager - {Environment.MachineName}/{Environment.UserName}";
+            }
+            else
+            {
+                Text = "Program Manager";
+            }
         }
 
         private void InitializeMDI()
@@ -69,17 +84,17 @@ namespace ProgramManagerVC
                     child.Text = groups.Rows[i][1].ToString();
                     child.Tag = groups.Rows[i][0].ToString();
                     child.MdiParent = this;
-                    if(groups.Rows[i][2].ToString() == "0")
+                    switch (groups.Rows[i][2].ToString())
                     {
-                        child.WindowState = FormWindowState.Minimized;
-                    }
-                    else if (groups.Rows[i][2].ToString() == "1")
-                    {
-                        child.WindowState = FormWindowState.Normal;
-                    }
-                    else if (groups.Rows[i][2].ToString() == "2")
-                    {
-                        child.WindowState = FormWindowState.Maximized;
+                        case "0":
+                            child.WindowState = FormWindowState.Minimized;
+                            break;
+                        case "1":
+                            child.WindowState = FormWindowState.Normal;
+                            break;
+                        case "2":
+                            child.WindowState = FormWindowState.Maximized;
+                            break;
                     }
                     child.Show();
                 }
@@ -110,7 +125,7 @@ namespace ProgramManagerVC
         {
             if (((FormChild)this.ActiveMdiChild).listViewMain.SelectedItems.Count > 0)
             {
-                if (MessageBox.Show("Do you really want to delete \"" + ((FormChild)this.ActiveMdiChild).listViewMain.SelectedItems[0].Text + "\" item?",
+                if (MessageBox.Show("Do you really want to delete the \"" + ((FormChild)this.ActiveMdiChild).listViewMain.SelectedItems[0].Text + "\" item?",
                                    "Confirm",
                                    MessageBoxButtons.YesNo,
                                    MessageBoxIcon.Question) == DialogResult.Yes)
@@ -191,6 +206,30 @@ namespace ProgramManagerVC
             {
                 Environment.Exit(0);
             }
+        }
+
+        private void fileToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        {
+            if (((FormChild)this.ActiveMdiChild) == null)
+            {
+                newItemToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+                propertiesToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                newItemToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+                propertiesToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formSettings = new FormSettings();
+            formSettings.ShowDialog();
+            if(formSettings.DialogResult == DialogResult.OK)
+            InitializeTitle();
         }
     }
 }

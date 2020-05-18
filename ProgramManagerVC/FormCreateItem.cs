@@ -12,8 +12,6 @@ namespace ProgramManagerVC
     public partial class FormCreateItem : Form
     {
         string id_group;
-        string item_name;
-        string item_path;
         string id_item;
         public FormCreateItem(string id, string iditem = "0")
         {
@@ -75,6 +73,21 @@ namespace ProgramManagerVC
         private void TextBoxPath_TextChanged(object sender, EventArgs e)
         {
             CheckTextBoxes();
+        }
+
+        private void textBoxPath_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files != null && files.Any())
+                textBoxPath.Text = files.First();
+        }
+
+        private void textBoxPath_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Link;
+            else
+                e.Effect = DragDropEffects.None;
         }
     }
 }

@@ -90,12 +90,15 @@
             // 
             // textBoxPath
             // 
+            this.textBoxPath.AllowDrop = true;
             this.textBoxPath.Location = new System.Drawing.Point(56, 43);
             this.textBoxPath.Name = "textBoxPath";
             this.textBoxPath.ReadOnly = true;
             this.textBoxPath.Size = new System.Drawing.Size(155, 20);
             this.textBoxPath.TabIndex = 4;
             this.textBoxPath.TextChanged += new System.EventHandler(this.TextBoxPath_TextChanged);
+            this.textBoxPath.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxPath_DragDrop);
+            this.textBoxPath.DragOver += new System.Windows.Forms.DragEventHandler(this.textBoxPath_DragOver);
             // 
             // buttonBrowser
             // 
