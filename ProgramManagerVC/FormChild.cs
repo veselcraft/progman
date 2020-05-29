@@ -80,5 +80,17 @@ namespace ProgramManagerVC
                 data.SendQueryWithoutReturn("UPDATE groups SET status=2 WHERE id=" + this.Tag);
             }
         }
+
+        private void listViewMain_MouseDown(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Right) {
+                try {
+                    if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) {
+                        FileMenu.Show(Cursor.Position);
+                    }
+                } catch {
+
+                }
+            }
+        }
     }
 }
