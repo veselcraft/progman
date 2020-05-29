@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 
 namespace ProgramManagerVC
 {
@@ -26,6 +27,11 @@ namespace ProgramManagerVC
         private void FormChild_Load(object sender, EventArgs e)
         {
             InitializeItems();
+            if (System.Environment.OSVersion.Version.Major < 6) {
+                runAsAdministratorToolStripMenuItem.Visible = false;
+            } else {
+                runAsAdministratorToolStripMenuItem.Image = SystemIcons.Shield.ToBitmap();
+            }
         }
 
         private void ListViewMain_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -110,11 +116,16 @@ namespace ProgramManagerVC
         {
             if (System.Environment.OSVersion.Version.Major >= 6) 
             {
-                Process proc = new Process();
-                proc.StartInfo.FileName = listViewMain.SelectedItems[0].ToolTipText.ToString();
-                proc.StartInfo.UseShellExecute = true;
-                proc.StartInfo.Verb = "runas";
-                proc.Start();
+                try 
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = listViewMain.SelectedItems[0].ToolTipText.ToString();
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.Verb = "runas";
+                    proc.Start();
+                }
+                catch 
+                { }
             }
         }
 
