@@ -39,12 +39,14 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pAsteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FileMenu.SuspendLayout();
+            this.ListMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewMain
@@ -76,31 +78,34 @@
             this.toolStripSeparator1,
             this.cutToolStripMenuItem,
             this.copyToolStripMenuItem,
-            this.pAsteToolStripMenuItem,
             this.toolStripSeparator2,
             this.deleteToolStripMenuItem,
             this.toolStripSeparator3,
             this.propertiesToolStripMenuItem});
             this.FileMenu.Name = "FileMenu";
-            this.FileMenu.Size = new System.Drawing.Size(184, 198);
+            this.FileMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.FileMenu.Size = new System.Drawing.Size(184, 176);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.editToolStripMenuItem.Text = "Open file location";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // runAsAdministratorToolStripMenuItem
             // 
             this.runAsAdministratorToolStripMenuItem.Name = "runAsAdministratorToolStripMenuItem";
             this.runAsAdministratorToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.runAsAdministratorToolStripMenuItem.Text = "Run as administrator";
+            this.runAsAdministratorToolStripMenuItem.Click += new System.EventHandler(this.runAsAdministratorToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -111,19 +116,13 @@
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Text = "Move icon to...";
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            // 
-            // pAsteToolStripMenuItem
-            // 
-            this.pAsteToolStripMenuItem.Name = "pAsteToolStripMenuItem";
-            this.pAsteToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.pAsteToolStripMenuItem.Text = "Paste";
+            this.copyToolStripMenuItem.Text = "Copy icon to...";
             // 
             // toolStripSeparator2
             // 
@@ -135,6 +134,7 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -146,6 +146,21 @@
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
             this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.propertiesToolStripMenuItem.Text = "Properties";
+            // 
+            // ListMenu
+            // 
+            this.ListMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newItemToolStripMenuItem});
+            this.ListMenu.Name = "FileMenu";
+            this.ListMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.ListMenu.Size = new System.Drawing.Size(126, 26);
+            // 
+            // newItemToolStripMenuItem
+            // 
+            this.newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
+            this.newItemToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.newItemToolStripMenuItem.Text = "New Item";
+            this.newItemToolStripMenuItem.Click += new System.EventHandler(this.newItemToolStripMenuItem_Click);
             // 
             // FormChild
             // 
@@ -160,6 +175,7 @@
             this.Load += new System.EventHandler(this.FormChild_Load);
             this.Resize += new System.EventHandler(this.FormChild_ResizeEnd);
             this.FileMenu.ResumeLayout(false);
+            this.ListMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -174,10 +190,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pAsteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ListMenu;
+        private System.Windows.Forms.ToolStripMenuItem newItemToolStripMenuItem;
     }
 }

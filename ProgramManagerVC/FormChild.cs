@@ -81,14 +81,62 @@ namespace ProgramManagerVC
             }
         }
 
-        private void listViewMain_MouseDown(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Right) {
-                try {
-                    if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) {
-                        FileMenu.Show(Cursor.Position);
-                    }
-                } catch {
+        private void listViewMain_MouseDown(object sender, MouseEventArgs e) 
+        {
+            if (e.Button == MouseButtons.Right) 
+            {
+                if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) 
+                {
+                    FileMenu.Show(Cursor.Position);
+                } 
+                else 
+                {
+                    ListMenu.Show(Cursor.Position);
+                }
+            }
+        }
 
+        private void openToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            Process.Start(listViewMain.SelectedItems[0].ToolTipText.ToString());
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            Process.Start(new ProcessStartInfo ("explorer.exe", "/select, " + listViewMain.SelectedItems[0].ToolTipText.ToString()));
+        }
+
+        private void runAsAdministratorToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            if (System.Environment.OSVersion.Version.Major >= 6) 
+            {
+                Process proc = new Process();
+                proc.StartInfo.FileName = listViewMain.SelectedItems[0].ToolTipText.ToString();
+                proc.StartInfo.UseShellExecute = true;
+                proc.StartInfo.Verb = "runas";
+                proc.Start();
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            if (MessageBox.Show("Do you really want to delete the \"" + listViewMain.SelectedItems[0].Text + "\" item?",
+                                   "Confirm",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                data.SendQueryWithoutReturn("DELETE FROM \"items\" WHERE id = " + listViewMain.SelectedItems[0].Tag);
+                this.InitializeItems();
+            }
+        }
+
+        private void newItemToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            using (FormCreateItem createform = new FormCreateItem(this.Tag.ToString())) 
+            {
+                if (createform.ShowDialog() == DialogResult.OK) 
+                {
+                    this.InitializeItems();
                 }
             }
         }
