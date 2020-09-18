@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 
 namespace ProgramManagerVC
 {
@@ -26,6 +27,11 @@ namespace ProgramManagerVC
         private void FormChild_Load(object sender, EventArgs e)
         {
             InitializeItems();
+            if (System.Environment.OSVersion.Version.Major < 6) {
+                runAsAdministratorToolStripMenuItem.Visible = false;
+            } else {
+                runAsAdministratorToolStripMenuItem.Image = SystemIcons.Shield.ToBitmap();
+            }
         }
 
         private void ListViewMain_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -78,6 +84,71 @@ namespace ProgramManagerVC
             else if (this.WindowState == FormWindowState.Maximized)
             {
                 data.SendQueryWithoutReturn("UPDATE groups SET status=2 WHERE id=" + this.Tag);
+            }
+        }
+
+        private void listViewMain_MouseDown(object sender, MouseEventArgs e) 
+        {
+            if (e.Button == MouseButtons.Right) 
+            {
+                if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) 
+                {
+                    FileMenu.Show(Cursor.Position);
+                } 
+                else 
+                {
+                    ListMenu.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            Process.Start(listViewMain.SelectedItems[0].ToolTipText.ToString());
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            Process.Start(new ProcessStartInfo ("explorer.exe", "/select, " + listViewMain.SelectedItems[0].ToolTipText.ToString()));
+        }
+
+        private void runAsAdministratorToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            if (System.Environment.OSVersion.Version.Major >= 6) 
+            {
+                try 
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = listViewMain.SelectedItems[0].ToolTipText.ToString();
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.StartInfo.Verb = "runas";
+                    proc.Start();
+                }
+                catch 
+                { }
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            if (MessageBox.Show("Do you really want to delete the \"" + listViewMain.SelectedItems[0].Text + "\" item?",
+                                   "Confirm",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                data.SendQueryWithoutReturn("DELETE FROM \"items\" WHERE id = " + listViewMain.SelectedItems[0].Tag);
+                this.InitializeItems();
+            }
+        }
+
+        private void newItemToolStripMenuItem_Click(object sender, EventArgs e) 
+        {
+            using (FormCreateItem createform = new FormCreateItem(this.Tag.ToString())) 
+            {
+                if (createform.ShowDialog() == DialogResult.OK) 
+                {
+                    this.InitializeItems();
+                }
             }
         }
     }
