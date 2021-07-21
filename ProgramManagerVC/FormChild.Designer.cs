@@ -84,7 +84,7 @@
             this.propertiesToolStripMenuItem});
             this.FileMenu.Name = "FileMenu";
             this.FileMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.FileMenu.Size = new System.Drawing.Size(184, 176);
+            this.FileMenu.Size = new System.Drawing.Size(184, 198);
             // 
             // openToolStripMenuItem
             // 
@@ -146,6 +146,7 @@
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
             this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.propertiesToolStripMenuItem.Text = "Properties";
+            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
             // ListMenu
             // 

@@ -94,7 +94,6 @@ namespace ProgramManagerVC
                 if (listViewMain.FocusedItem == null)
                 {
                     ListMenu.Show(Cursor.Position);
-                    //return;
                 }
                 else if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) 
                 {
@@ -155,6 +154,19 @@ namespace ProgramManagerVC
                     this.InitializeItems();
                 }
             }
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                using (FormCreateItem createform = new FormCreateItem(this.Tag.ToString(),
+                    this.listViewMain.SelectedItems[0].Tag.ToString()))
+                {
+                    if (createform.ShowDialog() == DialogResult.OK)
+                    {
+                        this.InitializeItems();
+                    }
+                }
+           
         }
     }
 }
