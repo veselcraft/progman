@@ -91,7 +91,12 @@ namespace ProgramManagerVC
         {
             if (e.Button == MouseButtons.Right) 
             {
-                if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) 
+                if (listViewMain.FocusedItem == null)
+                {
+                    ListMenu.Show(Cursor.Position);
+                    //return;
+                }
+                else if (listViewMain.FocusedItem.Bounds.Contains(e.Location)) 
                 {
                     FileMenu.Show(Cursor.Position);
                 } 
