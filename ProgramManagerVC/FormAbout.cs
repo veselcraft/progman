@@ -23,5 +23,10 @@ namespace ProgramManagerVC
         {
             Process.Start("https://github.com/veselcraft/progman");
         }
+
+        private void FormAbout_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

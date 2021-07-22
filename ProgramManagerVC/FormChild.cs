@@ -59,7 +59,7 @@ namespace ProgramManagerVC
                         item.Tag = items.Rows[i][0].ToString();
                         listViewMain.Items.Add(item);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         MessageBox.Show("File \"" + items.Rows[i][3].ToString() + "\" cannot be found. Icon will be deleted.", 
                             "Error", 
