@@ -86,7 +86,7 @@
             this.propertiesToolStripMenuItem});
             this.FileMenu.Name = "FileMenu";
             this.FileMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.FileMenu.Size = new System.Drawing.Size(184, 176);
+            this.FileMenu.Size = new System.Drawing.Size(184, 198);
             // 
             // openToolStripMenuItem
             // 
