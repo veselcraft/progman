@@ -46,10 +46,5 @@ namespace ProgramManagerVC
                 button1.Enabled = true;
             }
         }
-
-        private void FormExecute_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

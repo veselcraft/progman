@@ -110,7 +110,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Execute Program";
-            this.Load += new System.EventHandler(this.FormExecute_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
