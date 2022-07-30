@@ -36,6 +36,7 @@ namespace ProgramManagerVC
                 dTable = data.SendQueryWithReturn("SELECT * FROM items WHERE id = " + id_item);
                 textBoxName.Text = dTable.Rows[0][1].ToString();
                 textBoxPath.Text = dTable.Rows[0][2].ToString();
+                textBoxWdir.Text = dTable.Rows[0][3].ToString();
             }
         }
 
@@ -43,18 +44,17 @@ namespace ProgramManagerVC
         {
             if (id_item == "0")
             {
-                data.SendQueryWithoutReturn("INSERT INTO \"items\"(id,name,path,icon,groups) VALUES (NULL,'" + textBoxName.Text + "','" + textBoxPath.Text + "','" + textBoxPath.Text + "','" + id_group + "');");
+                data.SendQueryWithoutReturn("INSERT INTO \"items\"(id,name,path,workingdir,icon,groups) VALUES (NULL,'" + textBoxName.Text + "','" + textBoxPath.Text + "','" + textBoxWdir.Text + "','" + textBoxPath.Text + "','" + id_group + "');");
             }
             else
             {
-                data.SendQueryWithoutReturn("UPDATE items SET name = \"" + textBoxName.Text + "\", path = \"" + textBoxPath.Text + "\", icon = \"" + textBoxPath.Text + "\" WHERE id = " + id_item);
+                data.SendQueryWithoutReturn("UPDATE items SET name = \"" + textBoxName.Text + "\", path = \"" + textBoxPath.Text + "\", workingdir = \"" + textBoxWdir.Text + "\", icon = \"" + textBoxPath.Text + "\" WHERE id = " + id_item);
             }
             this.Close();
         }
 
         private void CheckTextBoxes()
         {
-            /* https://tjournal.ru/flood/66038-artemiy-lebedev-puknul */
             if (!string.IsNullOrEmpty(textBoxName.Text) && !string.IsNullOrEmpty(textBoxPath.Text))
             {
                 buttonOK.Enabled = true;
@@ -88,6 +88,11 @@ namespace ProgramManagerVC
                 e.Effect = DragDropEffects.Link;
             else
                 e.Effect = DragDropEffects.None;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

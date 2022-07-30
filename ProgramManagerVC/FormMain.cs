@@ -62,7 +62,7 @@ namespace ProgramManagerVC
         {
             if (Properties.Settings.Default.UsernameInTitle == 1)
             {
-                Text = $"Program Manager - {Environment.MachineName}/{Environment.UserName}";
+                Text = $"Program Manager - {Environment.MachineName}\\{Environment.UserName}";
             }
             else
             {
@@ -73,7 +73,7 @@ namespace ProgramManagerVC
         private void InitializeMDI()
         {
             data.SendQueryWithoutReturn("CREATE TABLE IF NOT EXISTS \"groups\" (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, status INTEGER)");
-            data.SendQueryWithoutReturn("CREATE TABLE IF NOT EXISTS \"items\" (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, path TEXT, icon TEXT, groups INTEGER)");
+            data.SendQueryWithoutReturn("CREATE TABLE IF NOT EXISTS \"items\" (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, path TEXT, workingdir TEXT, icon TEXT, groups INTEGER)");
             DataTable groups = new DataTable();
             groups = data.SendQueryWithReturn("SELECT * FROM groups");
             if (groups.Rows.Count > 0)
@@ -110,7 +110,17 @@ namespace ProgramManagerVC
             }
         }
 
-        private void NewItemToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newGroupMenuItem_Click(object sender, EventArgs e)
+        {
+            Form createForm = new FormCreateGroup();
+            if (createForm.ShowDialog() == DialogResult.OK)
+            {
+                CloseAllMDIWindows();
+                InitializeMDI();
+            }
+        }
+
+        private void newItemMenuItem_Click(object sender, EventArgs e)
         {
             using (FormCreateItem createform = new FormCreateItem(this.ActiveMdiChild.Tag.ToString()))
             {
@@ -121,7 +131,7 @@ namespace ProgramManagerVC
             }
         }
 
-        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void deleteItemMenuItem_Click(object sender, EventArgs e)
         {
             if (((FormChild)this.ActiveMdiChild).listViewMain.SelectedItems.Count > 0)
             {
@@ -148,38 +158,11 @@ namespace ProgramManagerVC
             }
         }
 
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormAbout about = new FormAbout();
-            about.ShowDialog();
-        }
-
-        private void TileVerticalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LayoutMdi(MdiLayout.TileVertical);
-        }
-
-        private void TileHorizontalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LayoutMdi(MdiLayout.TileHorizontal);
-        }
-
-        private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LayoutMdi(MdiLayout.Cascade);
-        }
-
-        private void ExecuteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormExecute ex = new FormExecute();
-            ex.ShowDialog();
-        }
-
-        private void PropertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void propertiesMenuItem_Click(object sender, EventArgs e)
         {
             if (((FormChild)this.ActiveMdiChild).listViewMain.SelectedItems.Count > 0)
             {
-                using (FormCreateItem createform = new FormCreateItem(this.ActiveMdiChild.Tag.ToString(), 
+                using (FormCreateItem createform = new FormCreateItem(this.ActiveMdiChild.Tag.ToString(),
                     ((FormChild)this.ActiveMdiChild).listViewMain.SelectedItems[0].Tag.ToString()))
                 {
                     if (createform.ShowDialog() == DialogResult.OK)
@@ -199,7 +182,21 @@ namespace ProgramManagerVC
             }
         }
 
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void executeMenuItem_Click(object sender, EventArgs e)
+        {
+            FormExecute ex = new FormExecute();
+            ex.ShowDialog();
+        }
+
+        private void settingsMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formSettings = new FormSettings();
+            formSettings.ShowDialog();
+            if (formSettings.DialogResult == DialogResult.OK)
+                InitializeTitle();
+        }
+
+        private void exitMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("This program will be closed.", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
@@ -208,28 +205,41 @@ namespace ProgramManagerVC
             }
         }
 
-        private void fileToolStripMenuItem_DropDownOpened(object sender, EventArgs e)
+        private void tileVerticalMenuItem_Click(object sender, EventArgs e)
+        {
+            LayoutMdi(MdiLayout.TileVertical);
+        }
+
+        private void tileHorizontalMenuItem_Click(object sender, EventArgs e)
+        {
+            LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        private void cascadeMenuItem_Click(object sender, EventArgs e)
+        {
+            LayoutMdi(MdiLayout.Cascade);
+        }
+
+        private void aboutMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAbout about = new FormAbout();
+            about.ShowDialog();
+        }
+
+        private void FileMenu_Select(object sender, EventArgs e)
         {
             if (((FormChild)this.ActiveMdiChild) == null)
             {
-                newItemToolStripMenuItem.Enabled = false;
-                deleteToolStripMenuItem.Enabled = false;
-                propertiesToolStripMenuItem.Enabled = false;
+                newItemMenuItem.Enabled = false;
+                deleteItemMenuItem.Enabled = false;
+                propertiesMenuItem.Enabled = false;
             }
             else
             {
-                newItemToolStripMenuItem.Enabled = true;
-                deleteToolStripMenuItem.Enabled = true;
-                propertiesToolStripMenuItem.Enabled = true;
+                newItemMenuItem.Enabled = true;
+                deleteItemMenuItem.Enabled = true;
+                propertiesMenuItem.Enabled = true;
             }
-        }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form formSettings = new FormSettings();
-            formSettings.ShowDialog();
-            if(formSettings.DialogResult == DialogResult.OK)
-            InitializeTitle();
         }
     }
 }
