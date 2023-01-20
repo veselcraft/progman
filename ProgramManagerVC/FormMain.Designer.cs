@@ -46,6 +46,9 @@
             this.cascadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.convertFolderToGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialogCovnerter = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +73,8 @@
             this.newItemToolStripMenuItem,
             this.deleteToolStripMenuItem,
             this.propertiesToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.convertFolderToGroupToolStripMenuItem,
             this.toolStripMenuItem2,
             this.executeToolStripMenuItem,
             this.settingsToolStripMenuItem,
@@ -83,59 +88,59 @@
             // newGroupToolStripMenuItem
             // 
             this.newGroupToolStripMenuItem.Name = "newGroupToolStripMenuItem";
-            this.newGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newGroupToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.newGroupToolStripMenuItem.Text = "New Group...";
             this.newGroupToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // newItemToolStripMenuItem
             // 
             this.newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
-            this.newItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newItemToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.newItemToolStripMenuItem.Text = "New Item...";
             this.newItemToolStripMenuItem.Click += new System.EventHandler(this.NewItemToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.propertiesToolStripMenuItem.Text = "Properties";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.PropertiesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(199, 6);
             // 
             // executeToolStripMenuItem
             // 
             this.executeToolStripMenuItem.Name = "executeToolStripMenuItem";
-            this.executeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.executeToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.executeToolStripMenuItem.Text = "Execute...";
             this.executeToolStripMenuItem.Click += new System.EventHandler(this.ExecuteToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(199, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -185,6 +190,23 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(199, 6);
+            // 
+            // convertFolderToGroupToolStripMenuItem
+            // 
+            this.convertFolderToGroupToolStripMenuItem.Name = "convertFolderToGroupToolStripMenuItem";
+            this.convertFolderToGroupToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.convertFolderToGroupToolStripMenuItem.Text = "Convert Folder to Group";
+            this.convertFolderToGroupToolStripMenuItem.Click += new System.EventHandler(this.convertFolderToGroupToolStripMenuItem_Click);
+            // 
+            // folderBrowserDialogCovnerter
+            // 
+            this.folderBrowserDialogCovnerter.Description = "Select folder you want to convert to group";
+            this.folderBrowserDialogCovnerter.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +248,9 @@
         private System.Windows.Forms.ToolStripMenuItem tileHorizontalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cascadeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem convertFolderToGroupToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogCovnerter;
     }
 }
 

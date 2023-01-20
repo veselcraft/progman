@@ -226,5 +226,30 @@ namespace ProgramManagerVC
             if(formSettings.DialogResult == DialogResult.OK)
             InitializeTitle();
         }
+
+        private void convertFolderToGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialogCovnerter.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string path = folderBrowserDialogCovnerter.SelectedPath;
+                string[] list = Directory.GetFiles(path, "*.lnk");
+                string name = path.Replace(Path.GetDirectoryName(path) + Path.DirectorySeparatorChar, "");
+
+                data.SendQueryWithoutReturn("INSERT INTO groups (id,name,status) VALUES (NULL,\"" + name + "\",1)");
+
+                DataTable group = new DataTable();
+                group = data.SendQueryWithReturn("SELECT * FROM groups WHERE name = \"" + name + "\";");
+
+                foreach (string Link in list)
+                {
+                    string itemName = Path.GetFileNameWithoutExtension(Link);
+                    data.SendQueryWithoutReturn("INSERT INTO \"items\"(id,name,path,icon,groups) VALUES (NULL,'" + itemName + "','" + Link + "','" + Link + "','" + group.Rows[0][0].ToString() + "');");
+                }
+
+                CloseAllMDIWindows();
+                InitializeMDI();
+            }
+        }
     }
 }
