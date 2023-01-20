@@ -180,5 +180,18 @@ namespace ProgramManagerVC
                 InitializeItems();
             }
         }
+
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you really want to delete \"" + this.Text + "\" group?",
+                               "Confirm",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                data.SendQueryWithoutReturn("DELETE FROM \"groups\" WHERE id = " + this.Tag);
+                this.Hide();
+                this.DestroyHandle();
+            }
+        }
     }
 }

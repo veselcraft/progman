@@ -39,10 +39,6 @@ namespace ProgramManagerVC
                 {
                     e.Cancel = true;
                 }
-                else
-                {
-                    e.Cancel = false;
-                }
             }
             else if (e.CloseReason == CloseReason.ApplicationExitCall)
             {
@@ -142,8 +138,7 @@ namespace ProgramManagerVC
                                MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     data.SendQueryWithoutReturn("DELETE FROM \"groups\" WHERE id = " + this.ActiveMdiChild.Tag);
-                    CloseAllMDIWindows();
-                    InitializeMDI();
+                    ((FormChild)this.ActiveMdiChild).Hide();
                 }
             }
         }

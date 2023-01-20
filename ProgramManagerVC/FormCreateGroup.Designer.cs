@@ -63,6 +63,7 @@
             this.textBoxName.Size = new System.Drawing.Size(225, 20);
             this.textBoxName.TabIndex = 2;
             this.textBoxName.TextChanged += new System.EventHandler(this.TextBoxName_TextChanged);
+            this.textBoxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxName_KeyPress);
             // 
             // buttonCancel
             // 

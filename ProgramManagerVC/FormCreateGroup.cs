@@ -49,13 +49,14 @@ namespace ProgramManagerVC
 
         private void TextBoxName_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxName.Text))
+            buttonOK.Enabled = !string.IsNullOrEmpty(textBoxName.Text);
+        }
+
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return && !string.IsNullOrEmpty(textBoxName.Text))
             {
-                buttonOK.Enabled = false;
-            }
-            else
-            {
-                buttonOK.Enabled = true;
+                buttonOK.PerformClick();
             }
         }
     }
