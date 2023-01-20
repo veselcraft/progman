@@ -58,6 +58,7 @@
             // 
             // textBoxName
             // 
+            this.textBoxName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxName.Location = new System.Drawing.Point(56, 6);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(225, 20);

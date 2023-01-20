@@ -82,6 +82,7 @@
             // 
             // textBoxName
             // 
+            this.textBoxName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBoxName.Location = new System.Drawing.Point(56, 14);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(193, 20);
@@ -91,6 +92,8 @@
             // textBoxPath
             // 
             this.textBoxPath.AllowDrop = true;
+            this.textBoxPath.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxPath.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
             this.textBoxPath.Location = new System.Drawing.Point(56, 43);
             this.textBoxPath.Name = "textBoxPath";
             this.textBoxPath.ReadOnly = true;

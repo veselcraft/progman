@@ -19,7 +19,14 @@ namespace ProgramManagerVC
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Process.Start(textBoxPath.Text);
+            try
+            {
+                Process.Start(textBoxPath.Text);
+            } 
+            catch (Exception ex)
+            { 
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ButtonBrowse_Click(object sender, EventArgs e)
@@ -44,6 +51,14 @@ namespace ProgramManagerVC
             else
             {
                 button1.Enabled = true;
+            }
+        }
+
+        private void textBoxPath_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return && !String.IsNullOrEmpty(textBoxPath.Text))
+            {
+                button1.PerformClick();
             }
         }
     }
