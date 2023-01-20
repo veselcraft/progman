@@ -54,9 +54,9 @@ namespace ProgramManagerVC
             }
         }
 
-        private void textBoxPath_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBoxPath_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return && !String.IsNullOrEmpty(textBoxPath.Text))
+            if (e.KeyCode == Keys.Return && !String.IsNullOrEmpty(textBoxPath.Text))
             {
                 button1.PerformClick();
             }

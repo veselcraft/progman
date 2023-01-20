@@ -83,12 +83,14 @@
             // 
             // textBoxPath
             // 
+            this.textBoxPath.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBoxPath.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
             this.textBoxPath.Location = new System.Drawing.Point(12, 41);
             this.textBoxPath.Name = "textBoxPath";
             this.textBoxPath.Size = new System.Drawing.Size(176, 20);
             this.textBoxPath.TabIndex = 4;
             this.textBoxPath.TextChanged += new System.EventHandler(this.TextBoxPath_TextChanged);
-            this.textBoxPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPath_KeyPress);
+            this.textBoxPath.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxPath_KeyUp);
             // 
             // openFileDialogBrowse
             // 

@@ -52,9 +52,9 @@ namespace ProgramManagerVC
             buttonOK.Enabled = !string.IsNullOrEmpty(textBoxName.Text);
         }
 
-        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBoxName_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return && !string.IsNullOrEmpty(textBoxName.Text))
+            if (e.KeyCode == Keys.Return && !string.IsNullOrEmpty(textBoxName.Text))
             {
                 buttonOK.PerformClick();
             }
