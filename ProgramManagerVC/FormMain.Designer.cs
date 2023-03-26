@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.FileMenu = new System.Windows.Forms.MenuItem();
             this.newGroupMenuItem = new System.Windows.Forms.MenuItem();
@@ -173,6 +174,23 @@
             // 
             this.menuItem1.Index = 3;
             this.menuItem1.Text = "-";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(199, 6);
+            // 
+            // convertFolderToGroupToolStripMenuItem
+            // 
+            this.convertFolderToGroupToolStripMenuItem.Name = "convertFolderToGroupToolStripMenuItem";
+            this.convertFolderToGroupToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.convertFolderToGroupToolStripMenuItem.Text = "Convert Folder to Group";
+            this.convertFolderToGroupToolStripMenuItem.Click += new System.EventHandler(this.convertFolderToGroupToolStripMenuItem_Click);
+            // 
+            // folderBrowserDialogCovnerter
+            // 
+            this.folderBrowserDialogCovnerter.Description = "Select folder you want to convert to group";
+            this.folderBrowserDialogCovnerter.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
             // FormMain
             // 

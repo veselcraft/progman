@@ -39,10 +39,6 @@ namespace ProgramManagerVC
                 {
                     e.Cancel = true;
                 }
-                else
-                {
-                    e.Cancel = false;
-                }
             }
             else if (e.CloseReason == CloseReason.ApplicationExitCall)
             {
@@ -152,8 +148,7 @@ namespace ProgramManagerVC
                                MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     data.SendQueryWithoutReturn("DELETE FROM \"groups\" WHERE id = " + this.ActiveMdiChild.Tag);
-                    CloseAllMDIWindows();
-                    InitializeMDI();
+                    ((FormChild)this.ActiveMdiChild).Hide();
                 }
             }
         }
@@ -239,6 +234,39 @@ namespace ProgramManagerVC
                 newItemMenuItem.Enabled = true;
                 deleteItemMenuItem.Enabled = true;
                 propertiesMenuItem.Enabled = true;
+            }
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form formSettings = new FormSettings();
+            formSettings.ShowDialog();
+            if(formSettings.DialogResult == DialogResult.OK)
+            InitializeTitle();
+        }
+
+        private void convertFolderToGroupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialogCovnerter.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string path = folderBrowserDialogCovnerter.SelectedPath;
+                string[] list = Directory.GetFiles(path, "*.lnk");
+                string name = path.Replace(Path.GetDirectoryName(path) + Path.DirectorySeparatorChar, "");
+
+                data.SendQueryWithoutReturn("INSERT INTO groups (id,name,status) VALUES (NULL,\"" + name + "\",1)");
+
+                DataTable group = new DataTable();
+                group = data.SendQueryWithReturn("SELECT * FROM groups WHERE name = \"" + name + "\";");
+
+                foreach (string Link in list)
+                {
+                    string itemName = Path.GetFileNameWithoutExtension(Link);
+                    data.SendQueryWithoutReturn("INSERT INTO \"items\"(id,name,path,icon,groups) VALUES (NULL,'" + itemName + "','" + Link + "','" + Link + "','" + group.Rows[0][0].ToString() + "');");
+                }
+
+                CloseAllMDIWindows();
+                InitializeMDI();
             }
         }
     }

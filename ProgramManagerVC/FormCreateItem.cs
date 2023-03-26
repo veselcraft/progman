@@ -55,6 +55,9 @@ namespace ProgramManagerVC
 
         private void CheckTextBoxes()
         {
+            /* TJournal закрылся, поэтому оставлю ссылку на оригинал :D
+             * https://t.me/temablog/337
+             */
             if (!string.IsNullOrEmpty(textBoxName.Text) && !string.IsNullOrEmpty(textBoxPath.Text))
             {
                 buttonOK.Enabled = true;
