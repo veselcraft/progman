@@ -83,8 +83,8 @@
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(362, 213);
             this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "An open-source clone of \"progman\" program from Windows 3.1 written in C#.\n\nContri" +
-    "butors:\nVeselcraft (@veselcraft on GitHub)\nMarf (@Marfjeh on GitHub)";
+            this.richTextBox1.Text = "An open-source clone of \"progman\" program from Windows 3.1 written in C#.\n\n" +
+            "Authors:\nVeselcraft (@veselcraft on GitHub)";
             // 
             // FormAbout
             // 
