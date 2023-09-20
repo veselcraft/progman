@@ -1,3 +1,3 @@
-An open-source clone of "progman" program from Windows 3.1 written in C#.
+An open-source clone of Program Manager (`progman.exe`) from Windows 3.x written in C#.
 
 ![img](https://i.imgur.com/dOoxDQq.png)
