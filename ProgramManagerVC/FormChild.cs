@@ -13,6 +13,8 @@ namespace ProgramManagerVC
 {
     public partial class FormChild : Form
     {
+        private DataTable items;
+
         public FormChild()
         {
             InitializeComponent();
@@ -36,14 +38,16 @@ namespace ProgramManagerVC
 
         private void ListViewMain_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Process.Start(listViewMain.SelectedItems[0].ToolTipText.ToString());
+            ProcessStartInfo psi = new ProcessStartInfo(listViewMain.SelectedItems[0].ToolTipText.ToString(), "");
+            psi.WorkingDirectory = items.Rows[listViewMain.SelectedIndices[0]][3].ToString();
+            Process.Start(psi);
         }
 
         public void InitializeItems()
         {
             listViewMain.Items.Clear();
             imageListIcons.Images.Clear();
-            DataTable items = new DataTable();
+            items = new DataTable();
             items = data.SendQueryWithReturn("SELECT * FROM items WHERE groups = " + this.Tag);
             if (items.Rows.Count > 0)
             {
@@ -51,7 +55,7 @@ namespace ProgramManagerVC
                 {
                     try
                     {
-                        imageListIcons.Images.Add(Icon.ExtractAssociatedIcon(items.Rows[i][3].ToString()).ToBitmap());
+                        imageListIcons.Images.Add(Icon.ExtractAssociatedIcon(items.Rows[i][4].ToString()).ToBitmap());
                         ListViewItem item = new ListViewItem();
                         item.Text = items.Rows[i][1].ToString();
                         item.ImageIndex = i;
@@ -108,12 +112,14 @@ namespace ProgramManagerVC
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e) 
         {
-            Process.Start(listViewMain.SelectedItems[0].ToolTipText.ToString());
+            ProcessStartInfo psi = new ProcessStartInfo(listViewMain.SelectedItems[0].ToolTipText.ToString(), "");
+            psi.WorkingDirectory = items.Rows[listViewMain.SelectedIndices[0]][3].ToString();
+            Process.Start(psi);
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e) 
         {
-            Process.Start(new ProcessStartInfo ("explorer.exe", "/select, " + listViewMain.SelectedItems[0].ToolTipText.ToString()));
+            Process.Start(new ProcessStartInfo("explorer.exe", "/select, " + listViewMain.SelectedItems[0].ToolTipText.ToString()));
         }
 
         private void runAsAdministratorToolStripMenuItem_Click(object sender, EventArgs e) 

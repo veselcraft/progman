@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Program Manager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is a clone of Program Manager from Windows 3.x.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Veselcraft")]
 [assembly: AssemblyProduct("Program Manager")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("https://github.com/veselcraft/progman")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

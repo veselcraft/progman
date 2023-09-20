@@ -36,25 +36,28 @@
             this.textBoxPath = new System.Windows.Forms.TextBox();
             this.buttonBrowser = new System.Windows.Forms.Button();
             this.openFileDialogPath = new System.Windows.Forms.OpenFileDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxWdir = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(260, 41);
+            this.button1.Location = new System.Drawing.Point(320, 41);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonOK
             // 
-            this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Enabled = false;
-            this.buttonOK.Location = new System.Drawing.Point(260, 12);
+            this.buttonOK.Location = new System.Drawing.Point(320, 12);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 1;
@@ -105,7 +108,7 @@
             // 
             // buttonBrowser
             // 
-            this.buttonBrowser.Location = new System.Drawing.Point(217, 43);
+            this.buttonBrowser.Location = new System.Drawing.Point(278, 42);
             this.buttonBrowser.Name = "buttonBrowser";
             this.buttonBrowser.Size = new System.Drawing.Size(32, 20);
             this.buttonBrowser.TabIndex = 5;
@@ -118,11 +121,29 @@
             this.openFileDialogPath.Filter = "Executable (*.exe)|*.exe|BAT FIles|*.bat|All files|*.*";
             this.openFileDialogPath.Title = "Browse...";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Working Directory:";
+            // 
+            // textBoxWdir
+            // 
+            this.textBoxWdir.Location = new System.Drawing.Point(117, 71);
+            this.textBoxWdir.Name = "textBoxWdir";
+            this.textBoxWdir.Size = new System.Drawing.Size(193, 20);
+            this.textBoxWdir.TabIndex = 7;
+            // 
             // FormCreateItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 76);
+            this.ClientSize = new System.Drawing.Size(407, 105);
+            this.Controls.Add(this.textBoxWdir);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonBrowser);
             this.Controls.Add(this.textBoxPath);
             this.Controls.Add(this.textBoxName);
@@ -154,5 +175,7 @@
         private System.Windows.Forms.TextBox textBoxPath;
         private System.Windows.Forms.Button buttonBrowser;
         private System.Windows.Forms.OpenFileDialog openFileDialogPath;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxWdir;
     }
 }
