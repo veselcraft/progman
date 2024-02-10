@@ -9,10 +9,11 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data.SQLite;
 using data = ProgramManagerVC.data;
+using MinimizeToIcon;
 
 namespace ProgramManagerVC
 {
-    public partial class FormMain : Form
+    public partial class FormMain : MinimizingFormParent
     {
         public FormMain()
         {

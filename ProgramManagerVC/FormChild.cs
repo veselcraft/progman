@@ -8,12 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
+using MinimizeToIcon;
 
 namespace ProgramManagerVC
 {
-    public partial class FormChild : Form
+    public partial class FormChild : MinimizableForm
     {
-        public FormChild()
+        public FormChild() : base(64)
         {
             InitializeComponent();
         }
